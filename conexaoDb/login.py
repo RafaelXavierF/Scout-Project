@@ -35,9 +35,9 @@ def verificarLogin(evt):
         cursor.close()
         conn.close()
 
-info = {
+simulaLogin = {
     "id": "1",
     "senha": "12345"
 } 
 
-verificarLogin(info)
+verificarLogin(simulaLogin)
