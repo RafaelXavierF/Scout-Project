@@ -1,25 +1,9 @@
-#DOCUMENTAÇÃO
+#Aplicação Scouts - Estudo Pessoal
 
-Tabelas Jogador
+*Projeto que visa criação de partidas de futebol com auto seleção por parte do sistema baseada na habilidade de cada usúario.
 
-cd_jogador INT = id
+*Projeto deve permitir login e cadastro de jogadores e administradores no sistema.
 
-nm_jogador STR 
+*Projeto deve permitir criar eventos e adicionar jogadores para tais eventos.
 
-nm_apelido STR
-
-dt_nascimento DATE
-
-nr_telefone DATE
-
-st_whatapp STR
-
-nr_camisa INT
-
-cd_posicao STR
-
-st_mensal INT
-
-nr_cpf STR
-
-senha_cpf  STR
+------------------------------------------------------------------------------------------------------------------------------
