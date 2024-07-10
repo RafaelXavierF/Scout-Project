@@ -5,13 +5,14 @@ import json
 
 app =  Flask(__name__)
 
+# Simula APIs
 @app.route('/realizar-login')
 def verificarLogin(evt):
     
     config = {
     'user': 'admin',
-    'password': '180188',
-    'host': '192.168.1.2',
+    'password': '1234',
+    'host': '127.0.0.1',
     'database': 'mydb',
     'raise_on_warnings': True
     }
