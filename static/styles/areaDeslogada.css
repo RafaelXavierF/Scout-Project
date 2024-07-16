@@ -4,8 +4,7 @@ body{
     height: 100vh;;
 
     background-color: #F2F2F2;;
-    font-family: "Helvetica", Sans-Serif;
-}
+    font-family: 'Roboto', sans-serif;}
 
 /* guia de navegação */
 .navBar{
@@ -17,10 +16,14 @@ body{
     height: 120px;
     width: 100%;
 
-    background-color: #f1efe9;
+    background-color: #045694;
     box-shadow: 2px 2px 5px black;
 }
 
+.navBar h1{
+    color: #fff;
+    font-size: 30px;
+}
 .menu{
     list-style:none;
     display: flex;
@@ -32,14 +35,13 @@ body{
     border-right:1px solid #c0c0c0;
     }
 .menu li a{
-    color:#333; 
+    color:#ffffff; 
     text-decoration:none; 
     padding:5px 10px; 
     display:block;
 }
 
-.loginBotao{
-    border-radius: 20px;
-
+a{ 
+   font-size: 16px;
 }
 /* fim guia de navegação */
