@@ -1,0 +1,13 @@
+body{
+    margin:0px;
+    padding: 0px;
+    background-color: #0f0c0c;
+
+    font-family: "Helvetica", Sans-Serif;
+}
+
+.header{
+    background-color: #fff;
+    height: 300px;
+    width: 500px;
+}
