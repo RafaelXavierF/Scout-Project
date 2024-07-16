@@ -1,13 +1,45 @@
 body{
     margin:0px;
     padding: 0px;
-    background-color: #0f0c0c;
+    height: 100vh;;
 
+    background-color: #F2F2F2;;
     font-family: "Helvetica", Sans-Serif;
 }
 
-.header{
-    background-color: #fff;
-    height: 300px;
-    width: 500px;
+/* guia de navegação */
+.navBar{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 120px;
+    width: 100%;
+
+    background-color: #f1efe9;
+    box-shadow: 2px 2px 5px black;
 }
+
+.menu{
+    list-style:none;
+    display: flex;
+    gap: 40px;
+}
+.menu li{
+    position:relative;
+    float:left;
+    border-right:1px solid #c0c0c0;
+    }
+.menu li a{
+    color:#333; 
+    text-decoration:none; 
+    padding:5px 10px; 
+    display:block;
+}
+
+.loginBotao{
+    border-radius: 20px;
+
+}
+/* fim guia de navegação */

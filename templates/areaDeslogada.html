@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="Pt-Br">
+
 <head>
     <title>Área deslogada</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/areaDeslogada.css') }}">
+    <link rel="stylesheet" href="../static/styles/areaDeslogada.css">
 </head>
 <body>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/areaDeslogada.js') }}"></script>
 
-    <header class="header">
-        <h1>Scouts Projeto</h1>
-
-        <div>
-            <button>Novo evento</button>
-            <button>Gerenciar eventos</button>
+    <div class="navBar">
+        <div class="title">
+            <h1>PROJECT SCOUTS</h1>
         </div>
-        
-        <button>Login</button>
-    </header>
+
+        <div class="menu">
+            <ul class="menu">
+                <li><a href="#" title="Html">CRIAR EVENTO</a></li>
+                <li><a href="#" title="Css">EVENTOS</a></li>      
+            </Ul>
+        </div>
+
+        <div class="loginCadastro">
+            <a href='https://www.freecodecamp.org/'> <button class="loginBotao">ENTRAR</button> </a>
+
+            <img src="" alt="">
+        </div>
+    </div>
 </body>
 </html>
