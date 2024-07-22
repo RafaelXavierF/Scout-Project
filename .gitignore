@@ -1,0 +1,6 @@
+.DS_store
+.env
+
+
+gitignore
+_pycache__
