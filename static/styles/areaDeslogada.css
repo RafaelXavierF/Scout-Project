@@ -19,21 +19,16 @@ body{
     background-color: #045694;
     box-shadow: 2px 2px 5px black;
 }
-
 .navBar h1{
     color: #fff;
     font-size: 30px;
 }
+
 .menu{
     list-style:none;
     display: flex;
     gap: 40px;
 }
-.menu li{
-    position:relative;
-    float:left;
-    border-right:1px solid #c0c0c0;
-    }
 .menu li a{
     color:#ffffff; 
     text-decoration:none; 

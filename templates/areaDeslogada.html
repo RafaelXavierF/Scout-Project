@@ -2,9 +2,11 @@
 <html lang="Pt-Br">
 
 <head>
-    <title>Área deslogada</title>
+    <title>SCOUTS</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/styles/areaDeslogada.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/styles/areaDeslogada.css">
@@ -26,8 +28,7 @@
 
         <div class="menu">
             <ul class="menu">
-                <li><a href="#">CRIAR USUÁRIO</a></li>
-                <li><a href="#">ENTRAR</a></li>      
+                <li><a href="{{ url_for('appRotas.cadastroPage') }}">ENTRAR</a></li>
             </Ul>
         </div>
     </div>

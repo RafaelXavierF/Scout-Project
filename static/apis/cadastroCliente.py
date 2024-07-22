@@ -3,18 +3,23 @@ from flask import Response
 import mysql.connector
 import json
 
-app =  Flask(__name__)
+def cadastrarUsuario(evt):
+    config = {
+        'user': 'admin',
+        'password': '1234',
+        'host': '127.0.0.1',
+        'database': 'mydb',
+        'raise_on_warnings': True
+    }
 
-# Simula APIs
-@app.route('/realizar-login')
 def verificarLogin(evt):
     
     config = {
-    'user': 'admin',
-    'password': '1234',
-    'host': '127.0.0.1',
-    'database': 'mydb',
-    'raise_on_warnings': True
+        'user': 'admin',
+        'password': '1234',
+        'host': '127.0.0.1',
+        'database': 'mydb',
+        'raise_on_warnings': True
     }
 
     conn = mysql.connector.connect(**config)
@@ -41,4 +46,5 @@ simulaLogin = {
     "senha": "12345"
 } 
 
-verificarLogin(simulaLogin)
+
+
