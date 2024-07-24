@@ -1,4 +1,4 @@
-Arquivos necessários para rodar a aplicação, use pip install e o nome do arquivo no terminal... ex: pip install flask.
+Arquivos necessários para rodar a aplicação, use pip install e o nome do arquivo no terminal... ex: "pip install flask" ou "pip install mysql-connector-python".
 
 flask == 3.0.3
 request == 2.32.3  
