@@ -1,42 +1,26 @@
 from flask import Response
 import datetime
+import json
+import requests
 
 from funcoesAuxiliares import todos_preenchidos
-from conexaoDb import cria_conexao_banco
+from conexaoDb import cria_conexao_banco, verifica_dados_repetidos
 
 def cadastrarUsuario(evt):
-    configuracao_db = {
-        'user': 'admin',
-        'password': '1234',
-        'host': 'localhost',
-        'raise_on_warnings': True
-    }
-
-    todos_preenchidos(evt)
-    
+    preenchido = todos_preenchidos(evt)
     conexao = cria_conexao_banco()
 
-    if(conexao):
-        
-        cursor = conexao.cursor()
-        cursor.execute("SELECT nm_jogador, cd_jogador, senha FROM mydb.cad_jogadores where cd_jogador = 1")
-
-        resultado = cursor.fetchall()
-
+    if(not preenchido):
+        return 'Preencha todos os campos para finalizar o cadastro.'
     else:
-        print('nao')
+        if(conexao):
+            verifica_dados_repetidos(evt)
+        else:
+            return 'Um erro interno ocorreu ao finalizar o cadastro'
+
 
 def verificaLogin(evt):
-    
-    config = {
-        'user': 'admin',
-        'password': '1234',
-        'host': '127.0.0.1',
-        'database': 'mydb',
-        'raise_on_warnings': True
-    }
-
-    conn = mysql.connector.connect(**config)
+    conn = cria_conexao_banco()
 
     if conn.is_connected():
         cursor = conn.cursor()

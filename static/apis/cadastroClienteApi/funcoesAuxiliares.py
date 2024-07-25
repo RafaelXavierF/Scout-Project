@@ -1,5 +1,5 @@
-def todos_preenchidos(objeto):
-    for item in objeto.values():
+def todos_preenchidos(evt):
+    for item in evt.values():
         if item == '' or None :
-            print('Preencha todos os campos')
-            break
+            return False
+    return True
