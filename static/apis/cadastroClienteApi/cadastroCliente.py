@@ -1,8 +1,8 @@
 from flask import Response
 import datetime
-import json
-import mysql.connector
 
+from funcoesAuxiliares import todos_preenchidos
+from conexaoDb import cria_conexao_banco
 
 def cadastrarUsuario(evt):
     configuracao_db = {
@@ -14,18 +14,19 @@ def cadastrarUsuario(evt):
 
     todos_preenchidos(evt)
     
-    # conexao_db = mysql.connector.connect(**configuracao_db)
-    # if(conexao_db.is_connected()):
+    conexao = cria_conexao_banco()
 
-    #     cursor = conexao_db.cursor()
-    #     cursor.execute("SELECT nm_jogador, cd_jogador, senha FROM mydb.cad_jogadores where cd_jogador = 1")
+    if(conexao):
+        
+        cursor = conexao.cursor()
+        cursor.execute("SELECT nm_jogador, cd_jogador, senha FROM mydb.cad_jogadores where cd_jogador = 1")
 
-    #     resultado = cursor.fetchall()
+        resultado = cursor.fetchall()
 
-    # else:
-    #     print('nao')
+    else:
+        print('nao')
 
-def verificarLogin(evt):
+def verificaLogin(evt):
     
     config = {
         'user': 'admin',
@@ -54,20 +55,6 @@ def verificarLogin(evt):
         cursor.close()
         conn.close()
 
-def todos_preenchidos(objeto):
-    for item in objeto.values():
-        if item == '' or None :
-            print('Preencha todos os campos')
-            break
-
-def cria_conexao_banco():
-    configuracao_db = {
-        'user': 'admin',
-        'password': '1234',
-        'host': 'localhost',
-        'raise_on_warnings': True
-    }
-    return mysql.connector.connect(**configuracao_db)
      
 
 # Teste mock
