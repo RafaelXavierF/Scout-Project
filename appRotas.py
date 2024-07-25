@@ -9,6 +9,3 @@ def homePage():
 @home.route("/cadastro")
 def cadastroPage():
     return render_template("paginaCadastro.html")
-
-
-#rotas Apis
