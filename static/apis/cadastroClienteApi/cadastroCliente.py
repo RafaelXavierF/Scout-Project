@@ -4,22 +4,23 @@ import json
 import requests
 
 from funcoesAuxiliares import todos_preenchidos
-from conexaoDb import cria_conexao_banco, verifica_dados_repetidos
+from conexaoDb import cria_conexao_banco, verifica_dados_repetidos_cadastro
 
-def cadastrarUsuario(evt):
+def cadastrar_usuario(evt: dict):
     preenchido = todos_preenchidos(evt)
-    conexao = cria_conexao_banco()
 
     if(not preenchido):
+        print('Preencha todos os campos para prosseguir com o cadastro.')
         return 'Preencha todos os campos para finalizar o cadastro.'
     else:
-        if(conexao):
-            verifica_dados_repetidos(evt)
+        retorno_banco = verifica_dados_repetidos_cadastro(evt)
+        if( len(retorno_banco) == 0):
+            print('Conexão bem sucedida')
         else:
-            return 'Um erro interno ocorreu ao finalizar o cadastro'
+            print('Um erro ocorreu ao se conectar ao banco de dados.')
+            return 'Um erro interno ocorreu ao finalizar o cadastro.'
 
-
-def verificaLogin(evt):
+def loga_usuario(evt: dict):
     conn = cria_conexao_banco()
 
     if conn.is_connected():
@@ -34,26 +35,21 @@ def verificaLogin(evt):
                 return json.dumps(resultado[0][1])
         else:
             return Response("Id ou senha digitados incorretamente.", status=400)
-            
-    if 'conn' in locals() and conn.is_connected():
-        cursor.close()
-        conn.close()
-
-     
 
 # Teste mock
 simula = {
     "cd_jogador": 1,
-    'nm_jogador':'12', 
-    "nm_apelido": '',
+    "nm_jogador": "12",
+    "nm_apelido": "Xavier",
     "dt_nascimento": datetime.datetime(2001, 12, 31),
-    "nr_telefone": '31992652507',
-    "st_whatapp": '1',
+    "nr_telefone": "31992652507",
+    "st_whatapp": "1",
     "nr_camisa": 10,
-    "cd_posicao": '2',
-    "st_mensal": '1',
-    "nr_cpf": '11111111111',
-    "senha_cpf":  'senhaTeste'
+    "cd_posicao": "2",
+    "st_mensal": "1",
+    "nr_cpf": "11111111111",
+    "senha_cpf": "senhaTeste",
+    "email": "teste@gmail.com"
 }
 
-cadastrarUsuario(simula)
+cadastrar_usuario(simula)
