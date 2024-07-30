@@ -1,5 +1,4 @@
 import mysql.connector
-import datetime
 
 def cria_conexao_banco():
     configuracao_db = {
@@ -22,11 +21,9 @@ def verifica_dados_repetidos_cadastro(evt):
         resultado = cursor.fetchall()
 
         return resultado
-    else:
-        return False
     
 def cadastra_usuario(evt):
     conexao = cria_conexao_banco()
 
-    print('Teste.')
-    
+    if(conexao):
+        print()

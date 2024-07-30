@@ -3,7 +3,7 @@ import datetime
 import json
 
 from funcoesAuxiliares import todos_preenchidos, formata_retorno_sucesso, formata_retorno_erro
-from conexaoDb import cria_conexao_banco, verifica_dados_repetidos_cadastro
+from conexaoDb import cadastra_usuario ,verifica_dados_repetidos_cadastro
 
 def cadastrar_usuario(evt: dict):
     preenchido = todos_preenchidos(evt)
@@ -11,28 +11,14 @@ def cadastrar_usuario(evt: dict):
     if(not preenchido):
         return formata_retorno_erro(400, 'Preencha todos os campos para prosseguir com o cadastro.')
     else:
-        retorno_banco = verifica_dados_repetidos_cadastro(evt)
-        if( len(retorno_banco) == 0):
-            print('Conexão bem sucedida')
+        retorno = verifica_dados_repetidos_cadastro(evt)
+        if( len(retorno) == 0):
+            formata_retorno_sucesso(200, retorno)
         else:
-            print('Um erro ocorreu ao se conectar ao banco de dados.')
-            return 'Um erro interno ocorreu ao finalizar o cadastro.'
+            return formata_retorno_erro(400, 'Um erro interno ocorreu ao finalizar o cadastro.')
 
 def loga_usuario(evt: dict):
-    conn = cria_conexao_banco()
-
-    if conn.is_connected():
-        cursor = conn.cursor()
-        cursor.execute("SELECT nm_jogador, cd_jogador, senha FROM mydb.cad_jogadores where cd_jogador = 1")
-
-        resultado = cursor.fetchall()
-
-        if(len(resultado) >= 1):
-            validado = True if evt["id"] == resultado[0][1] and evt["senha"] == resultado[0][2] else False
-            if(validado):
-                return json.dumps(resultado[0][1])
-        else:
-            return Response("Id ou senha digitados incorretamente.", status=400)
+    return Response("Id ou senha digitados incorretamente.", status=400)
 
 
 # Teste mock
