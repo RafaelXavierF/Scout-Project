@@ -26,4 +26,4 @@ def cadastra_usuario(evt):
     conexao = cria_conexao_banco()
 
     if(conexao):
-        print()
+        print('teste')
