@@ -21,10 +21,7 @@ def verifica_dados_repetidos_cadastro(evt: dict):
 
 def cadastra_usuario(evt :dict):
     tabela = cria_conexao_banco()
-
-    teste = int(evt['dt_nascimento'].timestamp())
-    print(teste)
-
+    
     tabela.put_item(
     Item={
         "cd_jogador": evt['cd_jogador'],
@@ -40,4 +37,3 @@ def cadastra_usuario(evt :dict):
         "st_whatsapp": evt['st_whatapp']
         }
     )
-    print('O item foi inserido com sucesso no banco de dados.')
