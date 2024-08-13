@@ -3,20 +3,19 @@ import datetime
 import json
 import requests
 
-from funcoesAuxiliares import todos_preenchidos, formata_retorno_sucesso, formata_retorno_erro
+from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_erro
 from conexaoDb import cadastra_usuario ,verifica_dados_repetidos_cadastro
 
 def cadastrar_usuario(evt: dict):
-    preenchido = todos_preenchidos(evt)
+    corpo = json.dumps(evt)
 
-    if(not preenchido):
-        return formata_retorno_erro(400, 'Preencha todos os campos para prosseguir com o cadastro.')
+    retorno = verifica_dados_repetidos_cadastro(evt)
+
+    if( len(retorno) == 0): 
+        cadastra_usuario(evt)
+        return formata_retorno_sucesso(200, retorno)
     else:
-        retorno = verifica_dados_repetidos_cadastro(evt)
-        if( len(retorno) == 0): 
-            formata_retorno_sucesso(200, retorno)
-        else:
-            return formata_retorno_erro(400, 'Um erro interno ocorreu ao finalizar o cadastro.')
+        return formata_retorno_erro(400, 'Um erro interno ocorreu ao finalizar o cadastro.')
 
 def loga_usuario(evt: dict):
     return Response("Id ou senha digitados incorretamente.", status=400)
@@ -32,9 +31,8 @@ simula = {
     "nr_camisa": 10,
     "cd_posicao": "2",
     "st_mensal": "1",
-    "nr_cpf": "11111111111",
-    "senha_cpf": "senhaTeste",
-    "email": "teste@gmail.com"
+    "cpf": "11111111111",
+    "senha": "senhaTeste"
 }
 
 cadastrar_usuario(simula)

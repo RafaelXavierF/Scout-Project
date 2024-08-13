@@ -1,29 +1,39 @@
-import mysql.connector
+import boto3
+import datetime
+from boto3.dynamodb.conditions import Attr
 
 def cria_conexao_banco():
-    configuracao_db = {
-        'host': '127.0.0.1',        
-        'user': 'admin',
-        'password': 'senhaDb#123',
-        'database': 'mydb',
-        'raise_on_warnings': True
-    }
+    dynamodb = boto3.resource('dynamodb')
 
-    conexao = mysql.connector.connect(**configuracao_db)
-    return conexao if conexao.is_connected() else False
+    tabela = dynamodb.Table('cad_jogadores')
 
-def verifica_dados_repetidos_cadastro(evt):
-    conexao = cria_conexao_banco()
+    return tabela
 
-    if (conexao):
-        cursor = conexao.cursor()
-        cursor.execute(f"SELECT email_jogador FROM mydb.cad_jogadores WHERE email_jogador = '{evt["email"]}'")
-        resultado = cursor.fetchall()
+def verifica_dados_repetidos_cadastro(evt: dict):
+    tabela = cria_conexao_banco()
 
-        return resultado
+    resposta = tabela.scan(
+    FilterExpression=Attr('nr_cpf').eq({evt['cpf']})
+    )
+
+    return resposta['Items']
+
     
-def cadastra_usuario(evt):
-    conexao = cria_conexao_banco()
+def cadastra_usuario(evt :dict):
+    tabela = cria_conexao_banco()
 
-    if(conexao):
-        print('teste')
+    tabela.put_item(
+    Item={
+        "cd_jogador": 0,
+        "nm_jogador": "12",
+        "nm_apelido": "Xavier",
+        "dt_nascimento": datetime.datetime(2001, 12, 31),
+        "nr_telefone": "31992652507",
+        "st_whatapp": "1",
+        "nr_camisa": 10,
+        "cd_posicao": "2",
+        "st_mensal": "1",
+        "cpf": "11111111111",
+        "senha": "senhaTeste"
+        }
+    )
