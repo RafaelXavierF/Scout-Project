@@ -1,7 +1,7 @@
-from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_erro, dictMock
+from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_erro
 from conexaoDb import cadastra_usuario ,verifica_dados_repetidos_cadastro
 
-def cadastrar_usuario(evt: dict, context):
+def cadastrar_usuario(evt: dict, context :dict):
     try:
         retorno = verifica_dados_repetidos_cadastro(evt)
 
@@ -15,5 +15,5 @@ def cadastrar_usuario(evt: dict, context):
     except NameError:
         return formata_retorno_erro(400, NameError)
 
-def loga_usuario(evt: dict, context):
+def loga_usuario(evt: dict, context: dict):
     return formata_retorno_sucesso("Id ou senha digitados incorretamente.", status=400)
