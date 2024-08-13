@@ -14,7 +14,7 @@ def verifica_dados_repetidos_cadastro(evt: dict):
     tabela = cria_conexao_banco()
 
     resposta = tabela.scan(
-    FilterExpression=Attr('nr_cpf').eq({evt['nr_cpf']})
+    FilterExpression=Attr('nr_cpf').eq(evt['nr_cpf'])
     )
 
     return resposta['Items']
@@ -37,6 +37,7 @@ def cadastra_usuario(evt :dict):
         "nr_telefone": evt['nr_telefone'],
         "senha": evt['senha'],
         "st_mensal": evt['st_mensal'],
-        "st_whatapp": evt['st_whatapp']
+        "st_whatsapp": evt['st_whatapp']
         }
     )
+    print('O item foi inserido com sucesso no banco de dados.')
