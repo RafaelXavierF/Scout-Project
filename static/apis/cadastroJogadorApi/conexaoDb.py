@@ -1,8 +1,6 @@
 import boto3
 from boto3.dynamodb.conditions import Attr
 
-import datetime
-
 def cria_conexao_banco():
     dynamodb = boto3.resource('dynamodb')
 
