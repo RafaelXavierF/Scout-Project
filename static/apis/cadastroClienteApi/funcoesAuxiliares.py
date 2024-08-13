@@ -1,7 +1,7 @@
 import datetime
 import json
 
-def formata_retorno_sucesso(status: int, evt: dict):
+def formata_retorno_sucesso_corpo(status: int, evt: dict):
     return {
         "statusCode": status,
         "headers": {
@@ -22,7 +22,7 @@ def formata_retorno_sucesso(status: int, mensagem: str):
     }
 
 def formata_retorno_erro(status: int, mensagem: str):
-    {
+    return {
         "statusCode": status,
         "headers": {
             "Content-Type": "application/json", 
@@ -38,7 +38,7 @@ def dictMock():
     "nm_apelido": "Xavier",
     "nm_jogador": "Rafael Xavier Franco",
     "nr_camisa": 10,
-    "nr_cpf": "14140452648",
+    "nr_cpf": "14140452644",
     "nr_telefone": "31 992652507",
     "senha": 3214122,
     "st_mensal": False,
