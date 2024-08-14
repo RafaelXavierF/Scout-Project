@@ -3,11 +3,11 @@ from boto3.dynamodb.conditions import Attr
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+chaveAws = os.getenv('aws_access_key_id')
+chaveSecreta = os.getenv('aws_secret_access_key')
 
 def cria_conexao_banco():
-    load_dotenv()
-    chaveAws = os.getenv('aws_access_key_id')
-    chaveSecreta = os.getenv('aws_secret_access_key')
 
     dynamodb = boto3.resource('dynamodb',
                                 aws_access_key_id = chaveAws,
@@ -45,4 +45,5 @@ def cadastra_usuario(evt :dict):
         "st_whatsapp": evt['st_whatapp']
         }
     )
-    
+
+cria_conexao_banco()
