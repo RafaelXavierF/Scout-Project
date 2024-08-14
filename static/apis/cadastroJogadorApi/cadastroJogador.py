@@ -4,7 +4,7 @@ from conexaoDb import cadastra_usuario ,verifica_dados_repetidos_cadastro
 def cadastrar_usuario(evt: dict, context :dict):
     try:
         retorno = verifica_dados_repetidos_cadastro(evt)
-
+        
         if( len(retorno) == 0): 
             cadastra_usuario(evt)
 

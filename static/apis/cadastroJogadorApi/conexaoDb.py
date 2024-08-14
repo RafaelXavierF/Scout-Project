@@ -3,19 +3,19 @@ from boto3.dynamodb.conditions import Attr
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-chaveAws = os.getenv('aws_access_key_id')
-chaveSecreta = os.getenv('aws_secret_access_key')
 
 def cria_conexao_banco():
+    load_dotenv()
+
+    chaveAws = os.getenv('aws_access_key_id')
+    chaveSecreta = os.getenv('aws_secret_access_key')
 
     dynamodb = boto3.resource('dynamodb',
                                 aws_access_key_id = chaveAws,
                                 aws_secret_access_key = chaveSecreta
                             )
-
+    
     tabela = dynamodb.Table('cad_jogadores')
-
     return tabela
 
 def verifica_dados_repetidos_cadastro(evt: dict):
@@ -34,7 +34,7 @@ def cadastra_usuario(evt :dict):
     Item={
         "cd_jogador": evt['cd_jogador'],
         "cd_posicao": evt['cd_posicao'],
-        "dt_nascimento": int(evt['dt_nascimento'].timestamp()),
+        "dt_nascimento": evt['dt_nascimento'],
         "nm_apelido": evt['nm_apelido'],
         "nm_jogador": evt['nm_jogador'],
         "nr_camisa": evt['nr_camisa'],
@@ -45,5 +45,3 @@ def cadastra_usuario(evt :dict):
         "st_whatsapp": evt['st_whatapp']
         }
     )
-
-cria_conexao_banco()
