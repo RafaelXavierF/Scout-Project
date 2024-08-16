@@ -3,7 +3,6 @@ from boto3.dynamodb.conditions import Attr
 from dotenv import load_dotenv
 import os
 
-
 def cria_conexao_banco():
     load_dotenv()
 

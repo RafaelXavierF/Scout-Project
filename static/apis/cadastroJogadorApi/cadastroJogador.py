@@ -5,7 +5,7 @@ def cadastrar_usuario(evt: dict, context :dict):
     try:
         retorno = verifica_dados_repetidos_cadastro(evt)
         
-        if( len(retorno) == 0): 
+        if( len(retorno) == 0):
             cadastra_usuario(evt)
 
             return (formata_retorno_sucesso(200, 'Cadastro realizado com sucesso.'))
@@ -16,4 +16,14 @@ def cadastrar_usuario(evt: dict, context :dict):
         return formata_retorno_erro(400, NameError)
 
 def loga_usuario(evt: dict, context: dict):
-    return formata_retorno_sucesso("Id ou senha digitados incorretamente.", status=400)
+    try:
+        retorno = verifica_dados_repetidos_cadastro(evt)
+
+        if(len(retorno) > 1):
+            print('')
+
+    except NameError:
+        return (formata_retorno_erro(400, 'Usuário-não-comprometido ou .'))
+
+def pega_dados_usuario(evt: dict, context: dict):
+    print('')
