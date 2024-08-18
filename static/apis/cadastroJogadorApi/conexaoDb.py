@@ -17,27 +17,29 @@ def cria_conexao_banco():
     tabela = dynamodb.Table('cad_jogadores')
     return tabela
 
-def verifica_dados_repetidos_cadastro(evt: dict):
+def obtem_dados_usuario(evt: dict):
     tabela = cria_conexao_banco()
 
-    resposta = tabela.scan(
-    FilterExpression=Attr('nr_cpf').eq(evt['nr_cpf'])
-    )
+    chave = 'nr_cpf' if evt.get('nr_cpf') else 'email'
+    valor = evt['nr_cpf'] if chave == 'nr_cpf' else evt['email']
 
-    return resposta['Items']
+    resposta = tabela.scan(
+        FilterExpression=Attr(chave).eq(valor)
+    )
+    
+    return resposta['Items'][0]
 
 def cadastra_usuario(evt :dict):
     tabela = cria_conexao_banco()
     
     tabela.put_item(
     Item={
-        "cd_jogador": evt['cd_jogador'],
+        "nr_cpf": evt['nr_cpf'],
         "cd_posicao": evt['cd_posicao'],
         "dt_nascimento": evt['dt_nascimento'],
         "nm_apelido": evt['nm_apelido'],
         "nm_jogador": evt['nm_jogador'],
         "nr_camisa": evt['nr_camisa'],
-        "nr_cpf": evt['nr_cpf'],
         "nr_telefone": evt['nr_telefone'],
         "senha": evt['senha'],
         "st_mensal": evt['st_mensal'],

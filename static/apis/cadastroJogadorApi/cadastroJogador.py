@@ -1,29 +1,37 @@
 from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_erro
-from conexaoDb import cadastra_usuario ,verifica_dados_repetidos_cadastro
+from conexaoDb import cadastra_usuario ,obtem_dados_usuario
 
 def cadastrar_usuario(evt: dict, context :dict):
     try:
-        retorno = verifica_dados_repetidos_cadastro(evt)
+        dados_usuario = obtem_dados_usuario(evt)
         
-        if( len(retorno) == 0):
+        if( len(dados_usuario) == 0):
             cadastra_usuario(evt)
 
             return (formata_retorno_sucesso(200, 'Cadastro realizado com sucesso.'))
         else:
-            return (formata_retorno_erro(400, 'Cpf-já-existente ou mal-formatado.'))
+            return (formata_retorno_erro(400, 'Cpf, email já existente ou mal-formatados.'))
         
     except NameError:
         return formata_retorno_erro(400, NameError)
 
 def loga_usuario(evt: dict, context: dict):
     try:
-        retorno = verifica_dados_repetidos_cadastro(evt)
+        dados_usuario = obtem_dados_usuario(evt)
+        
+        autorizado = True if dados_usuario.get('senha') == evt['senha'] and dados_usuario.get('email') == evt['email'] else False
 
-        if(len(retorno) > 1):
-            print('')
-
+        if(autorizado):
+            return (formata_retorno_sucesso(200, 'Usúario autorizado.'))
+        else:
+            return (formata_retorno_erro(400, 'Email ou senha digitados incorretamente.'))
+        
     except NameError:
-        return (formata_retorno_erro(400, 'Usuário-não-comprometido ou .'))
+        return (formata_retorno_erro(400, 'Senha ou email incorretos'))
 
-def pega_dados_usuario(evt: dict, context: dict):
-    print('')
+# loga_usuario(
+#     {
+#         'email': 'teste@gmail.com',
+#         'senha':'1234'
+#     },''
+# )
