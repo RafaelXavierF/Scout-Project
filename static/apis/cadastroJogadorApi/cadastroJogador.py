@@ -1,7 +1,7 @@
 from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_erro
 from conexaoDb import cadastra_usuario ,obtem_dados_usuario
 
-def cadastrar_usuario(evt: dict, context :dict):
+def cadastrar_usuario(evt :dict, context :dict):
     try:
         dados_usuario = obtem_dados_usuario(evt)
         
