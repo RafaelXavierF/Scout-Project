@@ -1,4 +1,4 @@
-from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_erro
+from funcoesAuxiliares import formata_retorno_sucesso, formata_retorno_sucesso_corpo, formata_retorno_erro
 from conexaoDb import cadastra_usuario ,obtem_dados_usuario
 
 def cadastrar_usuario(evt :dict, context :dict):
@@ -27,11 +27,19 @@ def loga_usuario(evt: dict, context: dict):
             return (formata_retorno_erro(400, 'Email ou senha digitados incorretamente.'))
         
     except NameError:
-        return (formata_retorno_erro(400, 'Senha ou email incorretos'))
+        return formata_retorno_erro(400, NameError)
 
-# loga_usuario(
-#     {
-#         'email': 'teste@gmail.com',
-#         'senha':'1234'
-#     },''
-# )
+def pega_dados_jogador(evt, context):
+    try:
+        parametros = evt['PathParameters']
+
+        dados_usuario = obtem_dados_usuario(evt)
+
+        if(dados_usuario):
+            return formata_retorno_sucesso_corpo(200, dados_usuario)
+        else:
+            return (formata_retorno_erro(200, 'Jogador não encontrado ou Cpf mal formatado.'))
+        
+    except NameError:
+        return formata_retorno_erro(400, NameError)
+    
