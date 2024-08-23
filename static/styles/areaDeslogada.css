@@ -47,6 +47,18 @@ body{
         color: #fcfcfc;
         font-size: 20px;
     }
+
+    .form-logging{
+        width: 350px;
+        height: 200px;
+        position: absolute;
+        top: 80px;
+        right: 43px;
+        background-color: #1d1c1c;
+        border: 1px solid #161616;
+
+        display: none;
+    }
     /* fim navegação */
 
 /* fim main */
