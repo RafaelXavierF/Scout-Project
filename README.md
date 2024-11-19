@@ -9,3 +9,5 @@ Aplicação Scouts - Estudo Pessoal
 3. Após isso rode o arquivo "app.py", a instância de sua aplicação e o seu dominio será mostrada no terminal do "visual studio code."
 
 --------------------------------------------------------------------------------------------------
+
+O pedro é muito gostoso
